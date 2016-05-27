@@ -10,6 +10,7 @@ var userSchema = mongoose.Schema({
   유닛 관리자 2
   부원 3
   */
+  enable : { type : Boolean },
   userType : { type : Number },
   phoneNumber : { type : Number },
   grade : { type : Number },
