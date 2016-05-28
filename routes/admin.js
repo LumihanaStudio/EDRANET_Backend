@@ -64,8 +64,30 @@ router.post('/registerUser', function(req, res){
 });
 
 router.post('/changeUserProfile', function(req, res){
+  var apikey = req.body.apikey;
+  var userName = req.body.userName;
+  var userType = req.body.userType;
+  var grade = req.body.grade;
+  var isLumihanaAndroid = req.body.isLumihanaAndroid;
+  var isLumihanaWeb = req.body.isLumihanaWeb;
+  var isGGZ = req.body.isGGZ;
+  var isArduino = req.body.isArduino;
+  var isDebur = req.body.isDebur;
+  var isPixel = req.body.isPixel;
+  var phoneNumber = req.body.phoneNumber;
+  if(phoneNumber === undefined || userName === undefined || userType === undefined || grade === undefined || isLumihanaAndroid === undefined || isLumihanaWeb === undefined ||isGGZ === undefined ||isArduino === undefined ||isDebur === undefined ||isPixel === undefined)
+    res.sendStatus(411);
+  else{
+    User.update({apikey : apikey}, { userName : userName, userType : userType , grade : grade, isLumihanaAndroid : isLumihanaAndroid, isLumihanaWeb : isLumihanaWeb, isGGZ : isGGZ, isArduino : isArduino, isDebur : isDebur, isPixel : isPixel, phoneNumber : phoneNumber}, function(err, doc){
+      if(err) {
+        throw err;
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+    }
 
-
+  }
 });
 
 router.post('/disableUser', function(req, res){
