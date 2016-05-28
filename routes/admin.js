@@ -56,7 +56,7 @@ router.post('/registerUser', function(req, res){
     newUser.save(function(err){
       if(err){
         console.log(err);
-        res.send(500);
+        res.sendStatus(500);
       }
       else res.send(newUser);
     })
@@ -65,8 +65,20 @@ router.post('/registerUser', function(req, res){
 
 router.post('/changeUserProfile', function(req, res){
 
+
 });
 
 router.post('/disableUser', function(req, res){
-
+  var apikey = req.body.apikey;
+  if(apikey === undefined) res.sendStatus(411);
+  else {
+    User.update({ apikey : apikey }, { enable : false }, function(err, num){
+      if(err) {
+        throw err;
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  }
 });
