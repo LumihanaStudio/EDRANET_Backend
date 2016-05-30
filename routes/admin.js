@@ -86,7 +86,6 @@ router.post('/changeUserProfile', function(req, res){
         res.sendStatus(200);
       }
     }
-
   }
 });
 
